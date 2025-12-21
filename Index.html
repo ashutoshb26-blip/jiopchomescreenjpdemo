@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Classroom - Powered by JioPC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --jio-blue: #0A2885;
+  --jio-blue-dark: #081F66;
+  --jio-red: #E2231A;
+  --white: #ffffff;
+  --purple-bg: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-dark: #111827;
+  --text-muted: #4B5563;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--purple-bg);
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 300px;
+  width: 100%;
+  max-width: 1500px;
+  height: 90vh;
+  padding: 20px;
+  gap: 25px;
+}
+
+/* MIDDLE CONTENT */
+.middle {
+  display: grid;
+  grid-template-rows: auto 1.2fr auto;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand-text {
+  font-weight: 800;
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.video-link {
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+.video-main {
+  background: var(--glass-bg);
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--jio-blue);
+  cursor: pointer;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.video-main:hover { transform: translateY(-5px); }
+
+.video-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--jio-red);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-left: 4px;
+    box-shadow: 0 5px 15px rgba(226, 35, 26, 0.3);
+}
+
+.journey {
+  background: var(--white);
+  border-radius: 28px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--jio-blue);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.journey h2 {
+    font-size: 14px;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.steps-horizontal {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.steps-horizontal .step {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  flex: 1;
+}
+
+.step-num {
+  background: var(--jio-red);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.send-anywhere {
+  background: var(--jio-blue);
+  border-radius: 15px;
+  padding: 12px;
+  font-size: 13px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+  display: grid;
+  grid-template-rows: 1fr 1.5fr;
+  gap: 20px;
+}
+
+.video-sub {
+  background: var(--glass-bg);
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  padding: 20px;
+  text-align: center;
+  color: var(--jio-blue);
+  font-weight: 700;
+  gap: 10px;
+  transition: 0.3s;
+  height: 100%;
+}
+.video-sub:hover { transform: translateY(-3px); background: #fff; }
+
+.qr-card {
+  background: var(--glass-bg);
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  text-align: center;
+}
+
+.qr-placeholder {
+  background: #fff;
+  padding: 15px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.qr-image {
+  width: 150px;
+  height: 150px;
+  display: block;
+}
+
+.qr-text h4 { margin: 0; font-size: 20px; color: var(--jio-blue); }
+.qr-text p { margin: 5px 0 0; font-size: 14px; color: var(--text-muted); }
+
+/* WIDGETS SECTION */
+.widgets {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.widget-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.widget {
+  background: var(--glass-bg);
+  border-radius: 28px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border: 1px solid var(--glass-border);
+  position: relative;
+  transition: 0.3s;
+  height: 100%;
+}
+
+.widget:hover { transform: scale(1.03); background: #fff; }
+
+.widget-number {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--jio-blue);
+  opacity: 0.4;
+}
+
+.widget-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  background: #F3F6FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.widget h3 { margin: 0; font-size: 20px; color: var(--jio-blue); }
+.widget p { margin: 5px 0 0; font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <div class="middle">
+    <div class="brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Reliance_Jio_Logo.svg" height="40"/>
+      <span class="brand-text">AI Classroom: Powered by JioPC</span>
+    </div>
+
+    <a href="https://www.youtube.com/watch?v=kqBGjzXrKbk" target="_blank" class="video-link">
+      <div class="video-main">
+        <div class="video-icon">▶</div>
+        Watch how AI works
+      </div>
+    </a>
+
+    <div class="journey">
+        <h2>Experience the magic of AI</h2>
+        <div class="steps-horizontal">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>Open any AI Widget</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>Type your input</div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>Magic of Jio AI</div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div>Download your document</div>
+            </div>
+        </div>
+        <a href="#" class="send-anywhere">
+          <span>📤</span> Share file with Send Anywhere
+        </a>
+      </div>
+  </div>
+
+  <div class="widgets">
+    <a href="https://gemini.google.com/gem/1f823PvxndZ59duMzU3KW9Jmx-WsD4ZlU?usp=sharing" target="_blank" class="widget-link">
+      <div class="widget">
+        <div class="widget-number">01</div>
+        <div class="widget-icon">🎓</div>
+        <div>
+          <h3>Career Roadmap</h3>
+          <p>AI-powered guidance for your child's future careers.</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://gemini.google.com/gem/1WdC2fH0cpv7pc2Y5NKJU554-8gNR9sX4?usp=sharing" target="_blank" class="widget-link">
+      <div class="widget">
+        <div class="widget-number">02</div>
+        <div class="widget-icon">📖</div>
+        <div>
+          <h3>Storybook</h3>
+          <p>Turn imagination into digital stories instantly.</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://gemini.google.com" target="_blank" class="widget-link">
+      <div class="widget">
+        <div class="widget-number">03</div>
+        <div class="widget-icon">💡</div>
+        <div>
+          <h3>Self Learn</h3>
+          <p>The smartest AI assistant for learning & work.</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="right-panel">
+    <a href="https://www.youtube.com/watch?v=hRC6WyKb4TM" target="_blank" class="video-link">
+        <div class="video-sub">
+            <div class="video-icon" style="width: 40px; height: 40px; font-size: 14px;">▶</div>
+            What is JioPC
+        </div>
+    </a>
+
+    <div class="qr-card">
+      <div class="qr-placeholder">
+        <img class="qr-image" src="https://quickchart.io/qr?text=https://www.jio.com/jiopc&size=200&dark=0A2885" alt="JioPC QR Code">
+      </div>
+      <div class="qr-text">
+        <h4>Scan here</h4>
+        <p>Get your JioPC</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
