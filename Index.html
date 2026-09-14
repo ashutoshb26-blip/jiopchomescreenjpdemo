@@ -1,381 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AI Classroom - Powered by JioPC</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --jio-blue: #0A2885;
-  --jio-blue-dark: #081F66;
-  --jio-red: #E2231A;
-  --white: #ffffff;
-  --purple-bg: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
-  --glass-bg: rgba(255, 255, 255, 0.95);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --text-dark: #111827;
-  --text-muted: #4B5563;
-}
-
-* {
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--purple-bg);
-  color: var(--text-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.app {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 300px;
-  width: 100%;
-  max-width: 1500px;
-  height: 90vh;
-  padding: 20px;
-  gap: 25px;
-}
-
-/* MIDDLE CONTENT */
-.middle {
-  display: grid;
-  grid-template-rows: auto 1.2fr auto;
-  gap: 20px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.brand-text {
-  font-weight: 800;
-  font-size: 24px;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.video-link {
-  text-decoration: none;
-  display: block;
-  height: 100%;
-}
-
-.video-main {
-  background: var(--glass-bg);
-  border-radius: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  border: 1px solid var(--glass-border);
-  overflow: hidden;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--jio-blue);
-  cursor: pointer;
-  flex-direction: column;
-  gap: 15px;
-  transition: transform 0.3s ease;
-  height: 100%;
-}
-
-.video-main:hover { transform: translateY(-5px); }
-
-.video-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--jio-red);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding-left: 4px;
-    box-shadow: 0 5px 15px rgba(226, 35, 26, 0.3);
-}
-
-.journey {
-  background: var(--white);
-  border-radius: 28px;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  color: var(--jio-blue);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.journey h2 {
-    font-size: 14px;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-    color: var(--text-muted);
-}
-
-.steps-horizontal {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.steps-horizontal .step {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 13px;
-  flex: 1;
-}
-
-.step-num {
-  background: var(--jio-red);
-  color: white;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 12px;
-}
-
-.send-anywhere {
-  background: var(--jio-blue);
-  border-radius: 15px;
-  padding: 12px;
-  font-size: 13px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-/* RIGHT PANEL */
-.right-panel {
-  display: grid;
-  grid-template-rows: 1fr 1.5fr;
-  gap: 20px;
-}
-
-.video-sub {
-  background: var(--glass-bg);
-  border-radius: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--glass-border);
-  cursor: pointer;
-  padding: 20px;
-  text-align: center;
-  color: var(--jio-blue);
-  font-weight: 700;
-  gap: 10px;
-  transition: 0.3s;
-  height: 100%;
-}
-.video-sub:hover { transform: translateY(-3px); background: #fff; }
-
-.qr-card {
-  background: var(--glass-bg);
-  border-radius: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--glass-border);
-  padding: 20px;
-  text-align: center;
-}
-
-.qr-placeholder {
-  background: #fff;
-  padding: 15px;
-  border-radius: 20px;
-  margin-bottom: 15px;
-  border: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.qr-image {
-  width: 150px;
-  height: 150px;
-  display: block;
-}
-
-.qr-text h4 { margin: 0; font-size: 20px; color: var(--jio-blue); }
-.qr-text p { margin: 5px 0 0; font-size: 14px; color: var(--text-muted); }
-
-/* WIDGETS SECTION */
-.widgets {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.widget-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.widget {
-  background: var(--glass-bg);
-  border-radius: 28px;
-  padding: 24px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  border: 1px solid var(--glass-border);
-  position: relative;
-  transition: 0.3s;
-  height: 100%;
-}
-
-.widget:hover { transform: scale(1.03); background: #fff; }
-
-.widget-number {
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  font-weight: 800;
-  font-size: 14px;
-  color: var(--jio-blue);
-  opacity: 0.4;
-}
-
-.widget-icon {
-  width: 55px;
-  height: 55px;
-  border-radius: 15px;
-  background: #F3F6FF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-}
-
-.widget h3 { margin: 0; font-size: 20px; color: var(--jio-blue); }
-.widget p { margin: 5px 0 0; font-size: 14px; color: var(--text-muted); line-height: 1.4; }
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The friendly AI newsletter that helps you make sense of what's next.">
+  <title>signal / simple — AI, made clear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#0b1554; --blue:#1535c8; --sky:#e8edff; --red:#f04438; --peach:#fff2eb; --cream:#fffcf7; --muted:#66709a; --line:#dce1f4; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--cream); font-family:Manrope, sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .shell { max-width:1200px; margin:auto; padding:0 30px; }
+    nav { height:86px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:-.06em; font-size:21px; }
+    .mark { width:33px; height:33px; border-radius:50% 50% 50% 9px; background:var(--blue); position:relative; transform:rotate(-18deg); }
+    .mark::after { content:""; width:10px; height:10px; border-radius:50%; background:var(--red); position:absolute; right:5px; top:6px; }
+    .nav-links { display:flex; gap:29px; align-items:center; color:#48527f; font-size:14px; font-weight:700; }
+    .nav-button, .button { background:var(--blue); color:white; border-radius:9px; font-weight:800; border:0; cursor:pointer; transition:transform .2s, box-shadow .2s; }
+    .nav-button { padding:12px 17px; font-size:13px; }
+    .nav-button:hover, .button:hover { transform:translateY(-2px); box-shadow:0 10px 20px #1535c834; }
+    .hero { min-height:600px; position:relative; display:grid; grid-template-columns:1.08fr .92fr; gap:50px; align-items:center; padding:76px 0 95px; overflow:hidden; }
+    .eyebrow { color:var(--red); font:500 12px/1 "DM Mono", monospace; letter-spacing:.1em; text-transform:uppercase; display:flex; gap:9px; align-items:center; }
+    .eyebrow::before { content:""; width:22px; height:1px; background:currentColor; }
+    h1 { font-size:clamp(43px, 5.4vw, 70px); line-height:1.03; letter-spacing:-.07em; max-width:680px; margin:19px 0 23px; }
+    h1 em { font-style:normal; color:var(--blue); position:relative; white-space:nowrap; }
+    h1 em::after { content:""; position:absolute; height:8px; border-radius:50%; background:var(--red); opacity:.25; left:2px; right:0; bottom:1px; z-index:-1; transform:rotate(-1deg); }
+    .intro { color:var(--muted); font-size:17px; line-height:1.75; max-width:515px; margin:0 0 30px; }
+    .signup { display:flex; gap:9px; background:#fff; border:1px solid var(--line); padding:6px; border-radius:12px; max-width:490px; box-shadow:0 12px 30px #0b155414; }
+    .signup input { min-width:0; flex:1; border:0; outline:0; padding:0 12px; color:var(--ink); font:500 14px Manrope,sans-serif; }
+    .button { padding:15px 19px; font-size:14px; white-space:nowrap; }
+    .form-note { margin:13px 0 0; color:#8b93b4; font-size:12px; }
+    .form-note span { color:var(--red); }
+    .hero-art { position:relative; width:min(100%,430px); justify-self:end; height:390px; }
+    .orbit { width:334px; height:334px; border:1px solid #ccd5ff; border-radius:50%; position:absolute; right:25px; top:22px; }
+    .orbit::before,.orbit::after { content:""; position:absolute; border-radius:50%; }
+    .orbit::before { width:17px;height:17px;background:var(--red);left:27px;top:38px;box-shadow:245px 192px 0 #ffcdb9; }
+    .orbit::after { width:9px;height:9px;background:#6882ec;right:24px;top:68px; }
+    .newsletter-card { position:absolute; width:305px; height:346px; right:52px; top:32px; background:#fff; box-shadow:0 22px 55px #0b15542b; transform:rotate(5deg); border-radius:5px; padding:30px 27px; }
+    .card-top { display:flex; justify-content:space-between; font:500 9px "DM Mono"; color:var(--blue); border-bottom:1px solid var(--line); padding-bottom:16px; }
+    .card-title { font-size:27px; line-height:1.12; letter-spacing:-.07em; font-weight:800; margin:26px 0 17px; }
+    .tiny { color:var(--muted); font-size:11px; line-height:1.6; margin:0; }
+    .card-chart { background:var(--sky); height:83px; border-radius:5px; margin-top:19px; padding:17px 15px; display:flex; align-items:flex-end; gap:8px; }
+    .bar { width:17px; background:var(--blue); border-radius:2px 2px 0 0; } .bar:nth-child(1){height:23px}.bar:nth-child(2){height:41px}.bar:nth-child(3){height:31px;background:var(--red)}.bar:nth-child(4){height:52px}.bar:nth-child(5){height:63px}
+    .stamp { width:91px; height:91px; background:var(--red); color:#fff; border-radius:50%; position:absolute; right:0; bottom:0; display:grid; place-items:center; text-align:center; font:500 10px/1.25 "DM Mono"; transform:rotate(-13deg); box-shadow:0 8px 22px #f0443860; }
+    .stamp b { font-size:21px; display:block; }
+    .features-wrap { background:var(--ink); color:#fff; padding:76px 0 84px; }
+    .section-heading { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:40px; }
+    .section-heading h2 { max-width:500px; margin:13px 0 0; font-size:34px; line-height:1.16; letter-spacing:-.055em; }
+    .section-heading p { max-width:310px; color:#b8c0e7; font-size:14px; line-height:1.65; margin:0; }
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .feature { min-height:226px; padding:26px; border:1px solid #344078; border-radius:12px; position:relative; overflow:hidden; }
+    .feature-number { color:#8591c9; font:500 11px "DM Mono"; }.feature h3 { font-size:20px; letter-spacing:-.04em; margin:50px 0 9px; }.feature p { color:#b8c0e7; font-size:13px; line-height:1.7; margin:0; max-width:280px; }.feature i { position:absolute; right:20px; bottom:20px; font-style:normal; color:var(--red); font-size:25px; }
+    .bottom-cta { text-align:center; padding:98px 30px; background:var(--peach); }.bottom-cta h2 { font-size:clamp(35px,4vw,52px); letter-spacing:-.065em; margin:0 auto 15px; max-width:660px; line-height:1.1; }.bottom-cta p { color:var(--muted); font-size:16px; margin:0 0 27px; }.bottom-cta .button { display:inline-block; padding:16px 24px; }
+    footer { border-top:1px solid #eeded6; padding:24px 0; color:#79809f; font-size:12px; } footer .shell { display:flex; justify-content:space-between; }.footer-brand { color:var(--ink); font-weight:800; }
+    @media (max-width:750px) { .shell{padding:0 21px}.nav-links a{display:none}.hero{grid-template-columns:1fr;padding:57px 0 42px;gap:28px}.hero-art{height:330px;transform:scale(.86);transform-origin:top center;justify-self:center;margin-bottom:-43px}.signup{flex-direction:column;padding:7px}.signup input{height:45px}.section-heading{display:block}.section-heading p{margin-top:16px}.features{grid-template-columns:1fr}.feature{min-height:190px}.feature h3{margin-top:35px}footer .shell{gap:12px;flex-direction:column}.nav-button{padding:10px 13px} }
+  </style>
 </head>
-
 <body>
-<div class="app">
-
-  <div class="middle">
-    <div class="brand">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Reliance_Jio_Logo.svg" height="40"/>
-      <span class="brand-text">AI Classroom: Powered by JioPC</span>
-    </div>
-
-    <a href="https://www.youtube.com/watch?v=kqBGjzXrKbk" target="_blank" class="video-link">
-      <div class="video-main">
-        <div class="video-icon">▶</div>
-        Watch how AI works
-      </div>
-    </a>
-
-    <div class="journey">
-        <h2>Experience the magic of AI</h2>
-        <div class="steps-horizontal">
-            <div class="step">
-                <div class="step-num">1</div>
-                <div>Open any AI Widget</div>
-            </div>
-            <div class="step">
-                <div class="step-num">2</div>
-                <div>Type your input</div>
-            </div>
-            <div class="step">
-                <div class="step-num">3</div>
-                <div>Magic of Jio AI</div>
-            </div>
-            <div class="step">
-                <div class="step-num">4</div>
-                <div>Download your document</div>
-            </div>
-        </div>
-        <a href="#" class="send-anywhere">
-          <span>📤</span> Share file with Send Anywhere
-        </a>
-      </div>
-  </div>
-
-  <div class="widgets">
-    <a href="https://gemini.google.com/gem/1f823PvxndZ59duMzU3KW9Jmx-WsD4ZlU?usp=sharing" target="_blank" class="widget-link">
-      <div class="widget">
-        <div class="widget-number">01</div>
-        <div class="widget-icon">🎓</div>
-        <div>
-          <h3>Career Roadmap</h3>
-          <p>AI-powered guidance for your child's future careers.</p>
-        </div>
-      </div>
-    </a>
-
-    <a href="https://gemini.google.com/gem/1WdC2fH0cpv7pc2Y5NKJU554-8gNR9sX4?usp=sharing" target="_blank" class="widget-link">
-      <div class="widget">
-        <div class="widget-number">02</div>
-        <div class="widget-icon">📖</div>
-        <div>
-          <h3>Storybook</h3>
-          <p>Turn imagination into digital stories instantly.</p>
-        </div>
-      </div>
-    </a>
-
-    <a href="https://gemini.google.com" target="_blank" class="widget-link">
-      <div class="widget">
-        <div class="widget-number">03</div>
-        <div class="widget-icon">💡</div>
-        <div>
-          <h3>Self Learn</h3>
-          <p>The smartest AI assistant for learning & work.</p>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="right-panel">
-    <a href="https://www.youtube.com/watch?v=hRC6WyKb4TM" target="_blank" class="video-link">
-        <div class="video-sub">
-            <div class="video-icon" style="width: 40px; height: 40px; font-size: 14px;">▶</div>
-            What is JioPC
-        </div>
-    </a>
-
-    <div class="qr-card">
-      <div class="qr-placeholder">
-        <img class="qr-image" src="https://quickchart.io/qr?text=https://www.jio.com/jiopc&size=200&dark=0A2885" alt="JioPC QR Code">
-      </div>
-      <div class="qr-text">
-        <h4>Scan here</h4>
-        <p>Get your JioPC</p>
-      </div>
-    </div>
-  </div>
-
-</div>
+  <header class="shell"><nav aria-label="Main navigation"><a class="brand" href="#top" aria-label="signal simple home"><span class="mark" aria-hidden="true"></span>signal / simple</a><div class="nav-links"><a href="#why">Why us</a><a href="#about">About</a><a class="nav-button" href="#subscribe">Get the newsletter →</a></div></nav></header>
+  <main id="top">
+    <section class="shell hero" aria-labelledby="headline">
+      <div><div class="eyebrow">Your weekly AI field guide</div><h1 id="headline">AI is moving fast.<br>We'll make it <em>simple.</em></h1><p class="intro">A friendly, jargon-free newsletter for curious people who want to understand AI — and use it with confidence.</p><form class="signup" id="subscribe" action="#" novalidate><label class="sr-only" for="email">Your email address</label><input id="email" type="email" placeholder="you@email.com" required><button class="button" type="submit">Join for free <span aria-hidden="true">→</span></button></form><p class="form-note" id="form-message"><span>●</span> One thoughtful email, every Sunday. No spam.</p></div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit"></div><article class="newsletter-card"><div class="card-top"><span>SIGNAL / 014</span><span>04 MIN READ</span></div><div class="card-title">Your shortcut to what matters in AI.</div><p class="tiny">Practical ideas, useful tools and a clearer view of what comes next.</p><div class="card-chart"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div></article><div class="stamp"><span><b>AI</b>without<br>the hype</span></div></div>
+    </section>
+    <section class="features-wrap" id="why"><div class="shell"><div class="section-heading"><div><div class="eyebrow">Made for the curious</div><h2>Everything you need to feel at home in AI.</h2></div><p>No technical background required. Just a little curiosity and a few minutes each week.</p></div><div class="features"><article class="feature"><span class="feature-number">01 / CLEAR EXPLAINERS</span><h3>Understand the big stuff.</h3><p>Clear, calm breakdowns of the AI ideas everyone is talking about.</p><i>↗</i></article><article class="feature"><span class="feature-number">02 / USEFUL TOOLS</span><h3>Put AI to work.</h3><p>Hand-picked tools and prompts that make your day a little easier.</p><i>✦</i></article><article class="feature"><span class="feature-number">03 / A HUMAN VIEW</span><h3>Keep your perspective.</h3><p>Thoughtful takes on what AI means for your work, creativity and life.</p><i>○</i></article></div></div></section>
+    <section class="bottom-cta" id="about"><div class="eyebrow" style="justify-content:center">Start here</div><h2>Less noise. More “aha!” moments.</h2><p>Join readers making sense of AI, one issue at a time.</p><a class="button" href="#subscribe">Get the free newsletter →</a></section>
+  </main>
+  <footer><div class="shell"><span class="footer-brand">signal / simple</span><span>Made for curious minds · © 2026</span></div></footer>
+  <script>
+    document.querySelector('.signup').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = document.querySelector('#email'); const message = document.querySelector('#form-message');
+      if (!email.validity.valid) { email.focus(); message.textContent = 'Please enter a valid email address.'; return; }
+      message.textContent = `You're in! Your first issue will be sent to ${email.value}.`;
+      message.style.color = '#1535c8'; email.value = '';
+    });
+  </script>
 </body>
 </html>
